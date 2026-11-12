@@ -1,0 +1,38 @@
+experiment:
+  id: "01_baseline_vector"
+  description: "Baseline dense vector RAG with fixed chunking and local embeddings/LLM."
+
+corpus:
+  source_manifest: "data/raw/source_manifest.yaml"
+
+chunking:
+  strategy: "fixed"
+  chunk_size: 500
+  chunk_overlap: 50
+
+embedding:
+  provider: "huggingface"
+  model: "sentence-transformers/all-MiniLM-L6-v2"
+  device: "cpu"
+  batch_size: 16
+  normalize: true
+
+indexing:
+  vector_store: "pgvector"
+  distance: "cosine"
+
+retrieval:
+  strategy: "dense_vector"
+  top_k: 5
+
+generation:
+  provider: "ollama"
+  model: "llama3.2:3b"
+  timeout_s: 60
+  temperature: 0.0
+
+artifacts:
+  run_dir: "data/eval/runs"
+  record_latency: true
+  record_usage_if_available: true
+  record_indexing_cost_separately: true

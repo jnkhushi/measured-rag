@@ -1,0 +1,48 @@
+# Application configuration example (M0 placeholder)
+# Copy/adapt as needed; experiment-specific configs added in later milestones.
+
+app:
+  name: measured-rag
+  environment: development
+  seed: 42
+
+paths:
+  data_dir: ./data
+  config_dir: ./configs
+  cache_dir: ./.cache
+
+database:
+  host: localhost
+  port: 5432
+  name: measured_rag
+  user: measured_rag
+  # password via env POSTGRES_PASSWORD; never commit secrets
+
+chunking:
+  strategy: fixed
+  chunk_size: 500
+  chunk_overlap: 50
+
+embedding:
+  provider: huggingface
+  model: sentence-transformers/all-MiniLM-L6-v2
+  device: cpu
+  batch_size: 16
+  normalize: true
+  cache_enabled: true
+
+retrieval:
+  strategy: dense_vector
+  top_k: 5
+
+generation:
+  provider: ollama
+  model: llama3.2:3b
+  timeout_s: 60
+
+resources:
+  cpu_only: true
+  embedding_batch_size: 16
+  max_top_n_rerank: 20
+  cache_enabled: true
+  seed: 42

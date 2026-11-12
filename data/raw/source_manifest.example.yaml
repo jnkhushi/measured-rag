@@ -1,0 +1,12 @@
+# Corpus source manifest example (required per source)
+# Document original source URL, title, publication/version date, and licence/usage terms.
+
+sources:
+  - id: example-001
+    title: "Example Cybersecurity Guidance"
+    source_url: "https://example.org/path/to/document"
+    publication_date: "2024-01-15"
+    version: "1.0"
+    license_or_terms: "Describe licence or usage terms; verify before ingestion."
+    local_path: "data/raw/example.md"
+    notes: "Replace with real, permissively usable sources."

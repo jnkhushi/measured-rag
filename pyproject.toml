@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "measured-rag"
+version = "0.1.0"
+description = "Cybersecurity RAG system for experimentally comparing retrieval strategies."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+  "pydantic>=2.7",
+  "pydantic-settings>=2.3",
+  "PyYAML>=6.0",
+  "python-dotenv>=1.0",
+  "SQLAlchemy>=2.0",
+  "psycopg[binary]>=3.2",
+  "pgvector>=0.3",
+  "alembic>=1.13",
+  "httpx>=0.27",
+  "numpy>=1.26",
+  "sentence-transformers>=3.0",
+  "torch>=2.2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "pytest-cov>=5.0",
+  "ruff>=0.6",
+]
+# Added incrementally in later milestones:
+# embeddings = ["sentence-transformers", "torch"]
+# api = ["fastapi", "uvicorn[standard]"]
+# ui = ["streamlit"]
+# sparse = ["rank-bm25"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]
